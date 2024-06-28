@@ -10,7 +10,7 @@ interface Temperature {
 
 data class ExtraSleep (var extraHours:  Int)
 
-class Robot(val roboName: String? = null, private var coffeeVal: String? = null, private var sugar: Char? = null, private var gaps: Int? = null,
+class Robot(var roboName: String? = null, private var coffeeVal: String? = null, private var sugar: Char? = null, private var gaps: Int? = null,
             private var sugarVal: String? = null, private var randomFood: String? = null): Coffee, Temperature{
 
     private val days = mutableListOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
@@ -21,7 +21,7 @@ class Robot(val roboName: String? = null, private var coffeeVal: String? = null,
 
     fun nameRobo() {
         print("Give a name to your robot -> ")
-        val roboName = readln()
+        roboName = readln()
         println("Hello my name is -> $roboName and You can assign me your work to have an easy life.")
     }
 
