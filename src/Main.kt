@@ -242,4 +242,3 @@ fun main() {
     val extraSleep = ExtraSleep(2)
     println("Since you have assigned your tasks to ${robot.roboName} now you can have extra hours of sleep for ${extraSleep.extraHours} Hours.")
 }
-
