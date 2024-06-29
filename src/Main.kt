@@ -20,18 +20,17 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
     private val difClothes = mutableListOf("Party Clothes", "College Clothes", "Traditional Clothes", "Professional Clothes")
 
     fun nameRobo() {
-        try {
-            print("Give a name to your robot -> ")
-            roboName = readln()
-            println("Hello my name is -> $roboName and You can assign me your work to have an easy life.")
-        }
-        catch(e: Exception) {
-            println("An error occurred! Please try again.")   
-        }
-        
+        print("Give a name to your robot -> ")
+        roboName = readln()
+        println("Hello my name is -> $roboName and You can assign me your work to have an easy life.")
+    }
+
+    fun roboAwake() {
+
     }
 
     fun alarm() {
+
         print("How many day's of week you want alarm to ring? (Give an Integer value) 'Warning: Only enter a number between 1 - 7 since a week have only 7 day's': ")
         val alarmInp1 = readln()
         val alarmInpInt1 = alarmInp1.toInt()
@@ -45,7 +44,7 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
             }
         }
         else {
-            throw Exception("Something went Wrong!!!")
+            println("Number is not valid")
         }
     }
 
@@ -61,7 +60,9 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
                 coffeeVal = "Milk Coffee"
                 sugar()
             }
-            else -> throw Exception("Something went Wrong!!!")
+            else -> {
+                println("Invalid letter!")
+            }
         }
     }
 
@@ -77,7 +78,9 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
                 sugarVal = "without Sugar"
                 gaps()
             }
-            else -> throw Exception("Something went Wrong!!!")
+            else -> {
+                println("Invalid letter!")
+            }
         }
     }
 
@@ -85,16 +88,17 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
         println("For how many days of the week you want $coffeeVal $sugarVal? : ")
         gaps = readln().toInt()
         if(gaps in 1..7){
-            for(i in 0 ..< gaps!!){
+            for(i in 0..<gaps!!){
                 println("It's ${days[i]} and your morning $coffeeVal $sugarVal is ready!!!")
             }
         }
         else {
-            throw Exception("Something went Wrong!!!")
+            println("(Invalid Number) A week have 7 days so type a number between 1 to 7.")
         }
     }
 
     fun heatWater() {
+
         println("Do you take bath everyday or is there any exception to it? (For yes -> y or For no -> n): ")
         val bath = readln().single().uppercaseChar()
         when (bath) {
@@ -140,10 +144,10 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
                         println("You are going to take baths on $days")
                         tempConvert()
                     }
-                    else -> throw Exception("Something went Wrong!!!")
+                    else -> println("Do enter a valid day!")
                 }
             }
-            else -> throw Exception("Something went Wrong!!!")
+            else -> println("Enter valid Letter!")
         }
     }
 
@@ -168,7 +172,7 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
 
                 println("Your temperature is set to $fahrenheit degree fahrenheit that is $celsius degree celsius for $days.\n")
             }
-            else -> throw Exception("Something went Wrong!!!")
+            else -> println("Enter valid degree!")
         }
     }
 
@@ -185,7 +189,7 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
             'H' -> {
                 println("It's Saturday and your Time-Table is${subject.shuffled().take(3)}\n")
             }
-            else -> throw Exception("Something went Wrong!!!")
+            else -> println("Enter valid Letter!")
         }
     }
 
@@ -204,13 +208,14 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
                     randomFood = vegFood.random()
                     println("Your $randomFood is ready!!!")
                 }
-                else -> throw Exception("Something went Wrong!!!")
+                else -> {
+                    println("You Entered Something Invalid!!!")
+                }
             }
         }
     }
 
     fun clothes() {
-    
         println("What clothes will you prefer to wear today? (For Party Type clothes enter -> P or For College Type clothes enter -> C " +
                 "or For Traditional Type clothes enter -> T or For Professional Type clothes enter -> PC")
 
@@ -220,25 +225,20 @@ class Robot(var roboName: String? = null, private var coffeeVal: String? = null,
             "C" -> println("Your ${difClothes[1]} will be ready till the time you take bath.")
             "T" -> println("Your ${difClothes[2]} will be ready till the time you take bath.")
             "PC" -> println("Your ${difClothes[3]} will be ready till the time you take bath.")
-            else -> throw Exception("Something went Wrong!!!")
+            else -> println("Type Appropriate Letter!")
         }
     }
 }
 
 fun main() {
-    try {
-        val robot = Robot()
-        robot.nameRobo()
-        robot.alarm()
-        robot.coffeeType()
-        robot.clothes()
-        robot.heatWater()
-        robot.timeTable()
-        robot.food()
-        val extraSleep = ExtraSleep(2)
-        println("Since you have assigned your tasks to ${robot.roboName} now you can have extra hours of sleep for ${extraSleep.extraHours} Hours.")
-    }
-    catch(e: Exception){
-        println(e.message)
-    }
+    val robot = Robot()
+    robot.nameRobo()
+    robot.alarm()
+    robot.coffeeType()
+    robot.clothes()
+    robot.heatWater()
+    robot.timeTable()
+    robot.food()
+    val extraSleep = ExtraSleep(2)
+    println("Since you have assigned your tasks to ${robot.roboName} now you can have extra hours of sleep for ${extraSleep.extraHours} Hours.")
 }
